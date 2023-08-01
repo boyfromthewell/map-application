@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     domains: ['lecture-1.vercel.app'],
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;
