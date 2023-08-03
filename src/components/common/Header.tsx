@@ -4,14 +4,15 @@ import Image from 'next/image';
 import styles from '@/styles/header.module.scss';
 
 interface HeaderProps {
+  onClickLogo?: () => void;
   rightElements?: React.ReactElement[];
 }
 
-const Header = ({ rightElements }: HeaderProps) => {
+const HeaderComponent = ({ onClickLogo, rightElements }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.flexItem}>
-        <Link href="/" className={styles.box}>
+        <Link href="/" className={styles.box} onClick={onClickLogo}>
           <Image
             src="/inflearn.png"
             width={110}
@@ -25,4 +26,4 @@ const Header = ({ rightElements }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default HeaderComponent;
