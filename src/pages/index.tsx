@@ -5,6 +5,7 @@ import { Store } from '../../types/store';
 import useStores from '@/hooks/useStores';
 import Header from '@/components/home/Header';
 import DetailSection from '@/components/home/DetailSection';
+import { NextSeo } from 'next-seo';
 
 interface HomeProps {
   stores: Store[];
@@ -20,6 +21,7 @@ const Home = ({ stores }: HomeProps) => {
 
   return (
     <>
+      <NextSeo title="매장 지도" description="매장 지도 서비스입니다." />
       <Header />
       <main
         style={{
