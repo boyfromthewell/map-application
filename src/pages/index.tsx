@@ -21,7 +21,11 @@ const Home = ({ stores }: HomeProps) => {
 
   return (
     <>
-      <NextSeo title="매장 지도" description="매장 지도 서비스입니다." />
+      <NextSeo
+        title="매장 지도"
+        description="매장 지도 서비스입니다."
+        canonical="https://map-application-mocha.vercel.app"
+      />
       <Header />
       <main
         style={{

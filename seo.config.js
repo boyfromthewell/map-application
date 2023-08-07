@@ -23,7 +23,7 @@ export default {
     },
     {
       name: 'google-site-verification',
-      content: 'O0r_20aU1JVk1sbI7E50r6RXiTRFrN8jG_a3uSeG4A0',
+      content: 'jcFfNouIs8upY3-l5s12hGarIC_M47SgvNKwvY7MS5Q',
     },
   ],
 };

@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import DetailHeader from '@/components/home/DetailHeader';
 import DetailContent from '@/components/home/DetailContent';
 import useCurrentStore from '@/hooks/useCurrentStore';
+import { NextSeo } from 'next-seo';
 
 interface StoreDetailProps {
   store: Store;
@@ -26,14 +27,21 @@ const StoreDetail = ({ store }: StoreDetailProps) => {
   if (router.isFallback) return <div>Loading...</div>;
 
   return (
-    <div className={`${styles.detailSection} ${styles.expanded}`}>
-      <DetailHeader
-        currentStore={store}
-        expanded={expanded}
-        onClickArrow={goToMap}
+    <>
+      <NextSeo
+        title={store.name}
+        description="매장 상세 페이지 입니다."
+        canonical={`https://map-application-mocha.vercel.app/${store.name}`}
       />
-      <DetailContent currentStore={store} expanded={expanded} />
-    </div>
+      <div className={`${styles.detailSection} ${styles.expanded}`}>
+        <DetailHeader
+          currentStore={store}
+          expanded={expanded}
+          onClickArrow={goToMap}
+        />
+        <DetailContent currentStore={store} expanded={expanded} />
+      </div>
+    </>
   );
 };
 
