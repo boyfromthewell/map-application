@@ -11,7 +11,6 @@ interface DetailContentProps {
 }
 
 const DetailContent = ({ currentStore, expanded }: DetailContentProps) => {
-  console.log(currentStore);
   if (!currentStore) return null;
   return (
     <div
@@ -28,6 +27,7 @@ const DetailContent = ({ currentStore, expanded }: DetailContentProps) => {
               alt="store image"
               fill
               style={{ objectFit: 'cover' }}
+              sizes="120px"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO0WhFsDwADzwF2mLYSJgAAAABJRU5ErkJggg=="
             />
