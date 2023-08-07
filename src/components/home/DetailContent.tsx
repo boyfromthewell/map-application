@@ -38,7 +38,7 @@ const DetailContent = ({ currentStore, expanded }: DetailContentProps) => {
         <>
           <div className={styles.description}>
             <h2>설명</h2>
-            <p>{currentStore.description}</p>
+            <p>{currentStore.description || '정보가 없습니다.'}</p>
           </div>
           <hr />
           <div className={styles.basicInfo}>
@@ -63,6 +63,17 @@ const DetailContent = ({ currentStore, expanded }: DetailContentProps) => {
             </div>
           </div>
           <hr />
+          <div className={styles.menus}>
+            <h2>메뉴</h2>
+            <ul>
+              {currentStore.menus?.map((menu) => (
+                <li className={styles.menu} key={menu.name}>
+                  <span className={styles.name}>{menu.name}</span>
+                  <span className={styles.price}>{menu.price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </>
       )}
     </div>

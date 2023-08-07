@@ -20,7 +20,7 @@ const Marker = ({ map, coordinates, icon, onClick }: Marker) => {
     return () => {
       marker?.setMap(null);
     };
-  }, [coordinates, map, onClick]);
+  }, [coordinates, icon, map, onClick]);
 
   return null;
 };

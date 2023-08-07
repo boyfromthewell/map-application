@@ -21,6 +21,7 @@ $section-padding-top: 8px;
 
   transition: transform 800ms;
   transform: translateY(calc(100% - 60px - 8px));
+
   &.selected {
     transform: translateY(calc(100% - 160px));
   }
@@ -31,6 +32,7 @@ $section-padding-top: 8px;
 
 .header {
   height: $header-height;
+  margin-bottom: 8px;
 
   display: flex;
   flex-direction: column;
@@ -138,4 +140,10 @@ $section-padding-top: 8px;
       }
     }
   }
+}
+
+.flexRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
