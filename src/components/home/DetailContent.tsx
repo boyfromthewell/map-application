@@ -1,5 +1,5 @@
 import React from 'react';
-import { Store } from '../../../types/store';
+import { Store } from '../../types/store';
 import styles from '@/styles/detail.module.scss';
 import { IoCallOutline, IoLocationOutline } from 'react-icons/io5';
 import Image from 'next/image';

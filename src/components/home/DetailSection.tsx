@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '@/styles/detail.module.scss';
 import useSWR from 'swr';
 import { CURRENT_STORE_KEY } from '@/hooks/useCurrentStore';
-import { Store } from '../../../types/store';
+import { Store } from '../../types/store';
 import DetailContent from './DetailContent';
 import DetailHeader from './DetailHeader';
 

@@ -48,6 +48,9 @@ $section-padding-top: 8px;
     &:disabled {
       opacity: 0.2;
       cursor: not-allowed;
+      svg {
+        animation: none;
+      }
     }
     &.expanded {
       transform: rotate(180deg);

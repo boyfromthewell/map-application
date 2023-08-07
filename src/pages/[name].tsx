@@ -1,5 +1,5 @@
 import React from 'react';
-import { Store } from '../../types/store';
+import { Store } from '../types/store';
 import styles from '@/styles/detail.module.scss';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';

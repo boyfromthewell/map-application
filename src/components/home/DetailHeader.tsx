@@ -3,7 +3,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import headerStyles from '@/styles/header.module.scss';
 import styles from '@/styles/detail.module.scss';
-import { Store } from '../../../types/store';
+import { Store } from '../../types/store';
 import copy from 'copy-to-clipboard';
 
 interface DetailHeaderProps {

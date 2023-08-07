@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import MapSection from '@/components/home/MapSection';
-import { Store } from '../../types/store';
+import { Store } from '../types/store';
 import useStores from '@/hooks/useStores';
 import Header from '@/components/home/Header';
 import DetailSection from '@/components/home/DetailSection';

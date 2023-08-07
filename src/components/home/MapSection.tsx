@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import Map from './Map';
 import useMap, { INITIAL_CENTER, INITIAL_ZOOM } from '@/hooks/useMap';
-import { NaverMap } from '../../../types/map';
+import { NaverMap } from '../../types/map';
 import Markers from './Markers';
 import useCurrentStore from '@/hooks/useCurrentStore';
 import { useRouter } from 'next/router';
-import { Coordinates } from '../../../types/store';
+import { Coordinates } from '../../types/store';
 
 const MapSection = () => {
   // initial zoom, center from url query

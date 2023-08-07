@@ -1,5 +1,5 @@
-import { Coordinates } from '../../types/store';
-import { NaverMap } from '../../types/map';
+import { Coordinates } from '../types/store';
+import { NaverMap } from '../types/map';
 import { useCallback } from 'react';
 import useSWR, { mutate } from 'swr';
 

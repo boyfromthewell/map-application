@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styles from '@/styles/map.module.scss';
-import { Coordinates } from '../../../types/store';
-import { NaverMap } from '../../../types/map';
+import { Coordinates } from '../../types/store';
+import { NaverMap } from '../../types/map';
 import { INITIAL_CENTER, INITIAL_ZOOM } from '@/hooks/useMap';
 import Script from 'next/script';
 
