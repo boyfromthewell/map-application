@@ -29,11 +29,17 @@ const Header = () => {
           key="button"
           onClick={replaceAndCopyUrl}
           style={{ marginRight: 8 }}
+          aria-label="현재 위치 클립보드 복사"
           className={styles.box}
         >
           <AiOutlineShareAlt size={20} />
         </button>,
-        <Link href="/feedback" className={styles.box} key="link">
+        <Link
+          href="/feedback"
+          className={styles.box}
+          key="link"
+          aria-label="피드백 페이지로 이동"
+        >
           <VscFeedback size={20} />
         </Link>,
       ]}

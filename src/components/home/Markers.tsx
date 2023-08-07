@@ -22,8 +22,6 @@ const Markers = () => {
   const { data: currentStore } = useSWR<Store>(CURRENT_STORE_KEY);
   const { setCurrentStore, clearCurrentStore } = useCurrentStore();
 
-  console.log(currentStore);
-
   if (!map || !stores) return null;
 
   return (
