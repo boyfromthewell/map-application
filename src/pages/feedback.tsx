@@ -1,7 +1,15 @@
 import Header from '@/components/common/Header';
+import FeedbackSection from '@/components/feedback/FeedbackSection';
+import { getFeedbacklistFromFirestore } from '@/firebase/feedback';
+import { Feedback } from '@/types/feedback';
+import { GetServerSideProps } from 'next';
 import { NextSeo } from 'next-seo';
 
-const Feedback = () => {
+interface FeedbackProps {
+  initialFeedbackList: Feedback[];
+}
+
+const Feedback = ({ initialFeedbackList }: FeedbackProps) => {
   return (
     <>
       <NextSeo
@@ -10,9 +18,19 @@ const Feedback = () => {
         canonical="https://map-application-mocha.vercel.app/feedback"
       />
       <Header />
-      <main></main>
+      <main>
+        <FeedbackSection initialFeedbackList={initialFeedbackList} />
+      </main>
     </>
   );
 };
 
 export default Feedback;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {
+      initialFeedbackList: await getFeedbacklistFromFirestore(),
+    },
+  };
+};
