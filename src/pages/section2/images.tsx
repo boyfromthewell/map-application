@@ -26,7 +26,7 @@ const Images = () => {
       {/* 외부 이미지는 너비와 높이를 미리 알수 없음, 빌드 타임에 미리 최적화 불가능 , width height 지정 필요*/}
       <figure>
         <Image
-          src="https://lecture-1.vercel.app/example.jpg"
+          src="https://map-application-mocha.vercel.app/example.jpg"
           alt="v13 image"
           width={500}
           height={100}
@@ -36,7 +36,7 @@ const Images = () => {
       {/* 부모 요소에  width height 지정, Image에 fill 속성을 주는 방법도 있음*/}
       <figure style={{ position: 'relative', width: 500, height: 100 }}>
         <Image
-          src="https://lecture-1.vercel.app/example.jpg"
+          src="https://map-application-mocha.vercel.app/example.jpg"
           alt="v13 image"
           fill
           style={{ objectFit: 'cover' }}
