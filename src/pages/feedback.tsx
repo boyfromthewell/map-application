@@ -11,7 +11,7 @@ interface FeedbackProps {
 
 const Feedback = ({ initialFeedbackList }: FeedbackProps) => {
   return (
-    <div style={{ backgroundColor: 'lightgray', height: '100%' }}>
+    <div style={{ backgroundColor: 'lightgray' }}>
       <NextSeo
         title="피드백"
         description="서비스 피드백 페이지 입니다."
