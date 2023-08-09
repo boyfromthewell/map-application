@@ -1,5 +1,5 @@
 export const pickThemeByTimestamp = (timestamp: number) => {
-  switch (timestamp % 4) {
+  switch (timestamp % 5) {
     case 0:
       return 'yellow';
     case 1:
