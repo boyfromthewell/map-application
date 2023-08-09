@@ -16,6 +16,9 @@ const Feedback = ({ initialFeedbackList }: FeedbackProps) => {
         title="피드백"
         description="서비스 피드백 페이지 입니다."
         canonical="https://map-application-mocha.vercel.app/feedback"
+        openGraph={{
+          url: 'https://map-application-mocha.vercel.app/feedback',
+        }}
       />
       <Header />
       <main>

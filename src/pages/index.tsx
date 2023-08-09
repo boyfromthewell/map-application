@@ -25,6 +25,9 @@ const Home = ({ stores }: HomeProps) => {
         title="매장 지도"
         description="매장 지도 서비스입니다."
         canonical="https://map-application-mocha.vercel.app"
+        openGraph={{
+          url: 'https://map-application-mocha.vercel.app',
+        }}
       />
       <Header />
       <main

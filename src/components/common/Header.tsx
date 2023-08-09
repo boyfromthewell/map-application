@@ -23,6 +23,7 @@ const HeaderComponent = ({ onClickLogo, rightElements }: HeaderProps) => {
             width={110}
             height={20}
             alt="인프런 로고"
+            priority
           />
         </Link>
       </div>

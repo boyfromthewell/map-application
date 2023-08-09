@@ -32,6 +32,9 @@ const StoreDetail = ({ store }: StoreDetailProps) => {
         title={store.name}
         description="매장 상세 페이지 입니다."
         canonical={`https://map-application-mocha.vercel.app/${store.name}`}
+        openGraph={{
+          url: `https://map-application-mocha.vercel.app/${store.name}`,
+        }}
       />
       <div className={`${styles.detailSection} ${styles.expanded}`}>
         <DetailHeader
