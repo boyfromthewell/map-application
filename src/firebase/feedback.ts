@@ -26,6 +26,11 @@ export const getFeedbacklistFromFirestore = async () => {
   return initialFeedbackList;
 };
 
-export const addFeedbackToFirestore = (newFeedback: Feedback) => {
-  addDoc(feedbackListCollection, newFeedback).then();
+export const addFeedbackToFirestore = async (newFeedback: Feedback) => {
+  try {
+    await addDoc(feedbackListCollection, newFeedback);
+    return true;
+  } catch (e) {
+    console.error(e);
+  }
 };
