@@ -2,8 +2,10 @@ import React from 'react';
 import { Store } from '../../types/store';
 import styles from '@/styles/detail.module.scss';
 import { IoCallOutline, IoLocationOutline } from 'react-icons/io5';
+
 import Image from 'next/image';
 import Naver from '../../../public/naver.png';
+import ReviewContent from './ReviewContent';
 
 interface DetailContentProps {
   currentStore?: Store;
@@ -75,6 +77,8 @@ const DetailContent = ({ currentStore, expanded }: DetailContentProps) => {
               ))}
             </ul>
           </div>
+          <hr />
+          <ReviewContent nid={currentStore.nid} />
         </>
       )}
     </div>

@@ -42,7 +42,9 @@ const FeedbackList = ({ feedbackList }: FeedbackListProps) => {
             >
               {content}
             </p>
-            <p className={styles.timestamp}>{dateParsing(timestamp)}</p>
+            <p className={styles.timestamp}>
+              {dateParsing({ dateNum: timestamp, parseType: 'feedback' })}
+            </p>
           </div>
         );
       })}

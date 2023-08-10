@@ -1,4 +1,12 @@
-export const dateParsing = (dateNum: number) => {
+type ParseType = 'feedback' | 'review';
+
+export const dateParsing = ({
+  dateNum,
+  parseType,
+}: {
+  dateNum: number;
+  parseType: ParseType;
+}) => {
   const date = new Date();
   date.setTime(dateNum);
 
@@ -9,5 +17,7 @@ export const dateParsing = (dateNum: number) => {
   const hour = String(date.getHours()).padStart(2, '0');
   const min = String(date.getMinutes()).padStart(2, '0');
 
-  return `${year}/${month}/${day} ${hour}:${min}`;
+  if (parseType === 'feedback') return `${year}/${month}/${day} ${hour}:${min}`;
+
+  if (parseType === 'review') return `${year}.${month}.${day}`;
 };

@@ -1,6 +1,6 @@
 import Header from '@/components/common/Header';
 import FeedbackSection from '@/components/feedback/FeedbackSection';
-import { getFeedbacklistFromFirestore } from '@/firebase/feedback';
+import { getDataFromFireStore } from '@/firebase';
 import { Feedback } from '@/types/feedback';
 import { GetServerSideProps } from 'next';
 import { NextSeo } from 'next-seo';
@@ -33,7 +33,7 @@ export default Feedback;
 export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
-      initialFeedbackList: await getFeedbacklistFromFirestore(),
+      initialFeedbackList: await getDataFromFireStore('feedbackList'),
     },
   };
 };
