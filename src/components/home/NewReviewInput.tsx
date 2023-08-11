@@ -23,6 +23,7 @@ const NewReviewInput = ({
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [clickList, setClickList] = useState<string[]>([]);
+  const [isNotValidInfo, setIsNotValidInfo] = useState({ message: '' });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -36,8 +37,25 @@ const NewReviewInput = ({
     }
   };
 
+  const resetState = () => {
+    setInputValue('');
+    setClickList([]);
+    setIsNotValidInfo({ message: '' });
+  };
+
+  const checkValidInput = () => {
+    if (!inputValue.length) {
+      setIsNotValidInfo({ message: '리뷰를 작성해주세요.' });
+      return false;
+    } else if (!clickList.length) {
+      setIsNotValidInfo({ message: '하나 이상의 카테고리를 선택해주세요.' });
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmitReview = async () => {
-    if (!inputValue.length || !clickList.length) return;
+    if (!checkValidInput()) return;
 
     const timestamp = new Date().getTime();
 
@@ -50,13 +68,12 @@ const NewReviewInput = ({
 
     if (isSubmit) {
       onReviewSubmit();
-      setInputValue('');
-      setClickList([]);
+      resetState();
     }
   };
 
   return (
-    <>
+    <div style={{ position: 'relative', paddingBottom: 7 }}>
       <div className={styles.goodPoint}>
         {GOOD_POINT_TEXT.map((text) => (
           <p
@@ -78,7 +95,8 @@ const NewReviewInput = ({
         />
         <button onClick={handleSubmitReview}>리뷰 등록</button>
       </div>
-    </>
+      <p className={styles.errorMessage}>{isNotValidInfo.message}</p>
+    </div>
   );
 };
 
