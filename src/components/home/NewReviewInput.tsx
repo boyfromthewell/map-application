@@ -1,6 +1,11 @@
 import { addReviewToFirestore } from '@/firebase/review';
 import styles from '@/styles/detail.module.scss';
 import React, { useState } from 'react';
+import ImageUploadSection from './ImageUploadSection';
+import { ImageType } from '@/types/review';
+
+import { addFileInfoToFirestore, storage } from '@/firebase/storage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 const GOOD_POINT_TEXT = [
   '☕커피가 맛있어요',
@@ -22,7 +27,11 @@ const NewReviewInput = ({
   onReviewSubmit: () => void;
 }) => {
   const [inputValue, setInputValue] = useState('');
+  const [toggleImageUpload, setToggleImageUpload] = useState(false);
   const [clickList, setClickList] = useState<string[]>([]);
+  const [imageUrl, setImageUrl] = useState<ImageType[]>([]);
+  const [files, setFiles] = useState<File[]>([]);
+
   const [isNotValidInfo, setIsNotValidInfo] = useState({ message: '' });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +49,10 @@ const NewReviewInput = ({
   const resetState = () => {
     setInputValue('');
     setClickList([]);
+    setFiles([]);
+    setImageUrl([]);
     setIsNotValidInfo({ message: '' });
+    setToggleImageUpload(false);
   };
 
   const checkValidInput = () => {
@@ -59,16 +71,39 @@ const NewReviewInput = ({
 
     const timestamp = new Date().getTime();
 
-    const isSubmit = await addReviewToFirestore({
-      content: inputValue,
-      timestamp,
-      goodPoint: clickList,
-      nid,
-    });
+    try {
+      const uploadPromises = files.map(async (file: File) => {
+        const storageRef = ref(storage, `images/${file.name}`);
+        await uploadBytesResumable(storageRef, file);
+        const downloadUrl = await getDownloadURL(storageRef);
+        return { filename: file.name, url: downloadUrl };
+      });
 
-    if (isSubmit) {
-      onReviewSubmit();
-      resetState();
+      const uploadedFiles = await Promise.all(uploadPromises);
+
+      const fileInfoPromises = uploadedFiles.map(async (fileInfo) => {
+        await addFileInfoToFirestore({
+          timestamp,
+          filename: fileInfo.filename,
+          url: fileInfo.url,
+        });
+      });
+
+      await Promise.all(fileInfoPromises);
+
+      const isSubmit = await addReviewToFirestore({
+        content: inputValue,
+        timestamp,
+        goodPoint: clickList,
+        nid,
+      });
+
+      if (isSubmit) {
+        onReviewSubmit();
+        resetState();
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -96,6 +131,20 @@ const NewReviewInput = ({
         <button onClick={handleSubmitReview}>리뷰 등록</button>
       </div>
       <p className={styles.errorMessage}>{isNotValidInfo.message}</p>
+      <p
+        className={styles.uploadImage}
+        onClick={() => setToggleImageUpload(!toggleImageUpload)}
+      >
+        이미지 업로드
+      </p>
+      {toggleImageUpload && (
+        <ImageUploadSection
+          imageUrl={imageUrl}
+          setImageUrl={setImageUrl}
+          files={files}
+          setFiles={setFiles}
+        />
+      )}
     </div>
   );
 };

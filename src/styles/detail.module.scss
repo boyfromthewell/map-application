@@ -256,3 +256,62 @@ $section-padding-top: 8px;
   font-size: 0.675rem;
   color: #ff3333;
 }
+
+.uploadImage {
+  right: 0;
+  position: absolute;
+  color: #64c0a9;
+  font-size: 0.675rem;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}
+
+.uploadContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 170px;
+
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 120px;
+    max-width: 120px;
+    height: 150px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: 1px solid #d3d3d3;
+  }
+}
+
+.imageContainer {
+  display: flex;
+  gap: 12px;
+  margin-left: 12px;
+}
+
+.imageCover {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+  svg {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+}
+
+.uploadImg {
+  object-fit: cover;
+}
+
+.userUploadImageContainer {
+  display: flex;
+  margin-bottom: 12px;
+}

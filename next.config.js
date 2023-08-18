@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['map-application-mocha.vercel.app', 'search.pstatic.net'],
+    domains: [
+      'map-application-mocha.vercel.app',
+      'search.pstatic.net',
+      'firebasestorage.googleapis.com',
+    ],
   },
   i18n: {
     locales: ['ko'],

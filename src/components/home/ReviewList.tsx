@@ -2,6 +2,7 @@ import { Review } from '@/types/review';
 import styles from '@/styles/detail.module.scss';
 import React, { useState } from 'react';
 import { dateParsing } from '@/utils/date';
+import UploadImage from './UploadImage';
 
 interface ReviewListProps {
   reviewData: Review[];
@@ -21,7 +22,8 @@ const ReviewList = ({ reviewData }: ReviewListProps) => {
   return (
     <div className={styles.reviewListContainer}>
       {reviewData.map(({ content, goodPoint, timestamp }, index) => (
-        <div key={content} className={styles.reviewCard}>
+        <div key={`${content}${timestamp}`} className={styles.reviewCard}>
+          <UploadImage timestamp={timestamp} />
           <div className={styles.goodPointContainer}>
             {goodPoint.slice(0, 2).map((text) => (
               <p key={text} className={styles.goodPointChip}>

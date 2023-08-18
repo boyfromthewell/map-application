@@ -148,3 +148,15 @@ button {
   cursor: pointer;
   font-family: inherit;
 }
+
+.indiana-scroll-container {
+  overflow: auto;
+}
+
+.indiana-scroll-container--hide-scrollbars::-webkit-scrollbar {
+  -webkit-appearance: none !important;
+  background: #0000 !important;
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}
