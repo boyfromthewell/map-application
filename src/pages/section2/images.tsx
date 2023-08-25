@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import example from '../../../public/inflearn.png';
+import example from '../../../public/naver.svg';
 
 // next/image (v13) : 상대적으로 용량이 작음, 서버에서 자동으로 이미지 용량 최적화 (webp, lazy loading 지원)
 
@@ -12,7 +12,7 @@ const Images = () => {
       <h1>img tag</h1>
 
       <figure>
-        <img src="/inflearn.png" alt="example" width={500} height={100} />
+        <img src="" alt="example" width={500} height={100} />
       </figure>
 
       <hr style={{ margin: '32px 0' }} />
