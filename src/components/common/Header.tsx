@@ -19,7 +19,7 @@ const HeaderComponent = ({ onClickLogo, rightElements }: HeaderProps) => {
           aria-label="홈으로 이동"
         >
           <Image
-            src="/inflearn.png"
+            src="/naver.svg"
             width={110}
             height={20}
             alt="인프런 로고"

@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment, forwardRef, useRef } from 'react';
 import styles from '@/styles/detail.module.scss';
 import PlusIcon from '../../../public/plus.svg';
 import Image from 'next/image';
@@ -10,14 +10,13 @@ interface ImageUploadSectionProps {
   setImageUrl: React.Dispatch<React.SetStateAction<ImageType[]>>;
   files: File[];
   setFiles: React.Dispatch<React.SetStateAction<File[]>>;
+  ref: React.ForwardedRef<HTMLLabelElement>;
 }
 
-const ImageUploadSection = ({
-  imageUrl,
-  setImageUrl,
-  files,
-  setFiles,
-}: ImageUploadSectionProps) => {
+const ImageUploadSection = forwardRef<
+  HTMLLabelElement,
+  ImageUploadSectionProps
+>(({ imageUrl, setImageUrl, files, setFiles }, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClickUploadBox = () => {
@@ -41,7 +40,12 @@ const ImageUploadSection = ({
 
   return (
     <div className={styles.uploadContainer}>
-      <label className={styles.imageUploadBox} onClick={handleClickUploadBox}>
+      <label
+        id="imageUploadLabel"
+        className={styles.imageUploadBox}
+        onClick={handleClickUploadBox}
+        ref={ref}
+      >
         <PlusIcon />
         <input
           style={{ display: 'none' }}
@@ -70,6 +74,8 @@ const ImageUploadSection = ({
       </ScrollContainer>
     </div>
   );
-};
+});
+
+ImageUploadSection.displayName = 'ImageUploadSection';
 
 export default ImageUploadSection;

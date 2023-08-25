@@ -22,16 +22,15 @@ const UploadImage = ({ timestamp }: { timestamp: number }) => {
     <ScrollContainer>
       <div className={styles.userUploadImageContainer}>
         {fileData?.map((data) => (
-          <div className={styles.imageCover} key={data.url}>
-            <Image
-              className={styles.uploadImg}
-              src={data.url}
-              key={data.filename}
-              alt="user_image"
-              width={170}
-              height={170}
-            />
-          </div>
+          <Image
+            className={styles.uploadImg}
+            src={data.url}
+            key={data.filename}
+            alt="user_image"
+            priority
+            width={170}
+            height={170}
+          />
         ))}
       </div>
     </ScrollContainer>

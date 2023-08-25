@@ -296,17 +296,6 @@ $section-padding-top: 8px;
   margin-left: 12px;
 }
 
-.imageCover {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.7);
-  svg {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-  }
-}
-
 .uploadImg {
   object-fit: cover;
 }

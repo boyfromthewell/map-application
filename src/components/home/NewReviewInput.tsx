@@ -1,6 +1,6 @@
 import { addReviewToFirestore } from '@/firebase/review';
 import styles from '@/styles/detail.module.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ImageUploadSection from './ImageUploadSection';
 import { ImageType } from '@/types/review';
 
@@ -26,6 +26,7 @@ const NewReviewInput = ({
   nid: number;
   onReviewSubmit: () => void;
 }) => {
+  const labelRef = useRef<HTMLLabelElement>(null);
   const [inputValue, setInputValue] = useState('');
   const [toggleImageUpload, setToggleImageUpload] = useState(false);
   const [clickList, setClickList] = useState<string[]>([]);
@@ -107,6 +108,11 @@ const NewReviewInput = ({
     }
   };
 
+  useEffect(() => {
+    if (toggleImageUpload && labelRef.current)
+      labelRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [toggleImageUpload]);
+
   return (
     <div style={{ position: 'relative', paddingBottom: 7 }}>
       <div className={styles.goodPoint}>
@@ -143,6 +149,7 @@ const NewReviewInput = ({
           setImageUrl={setImageUrl}
           files={files}
           setFiles={setFiles}
+          ref={labelRef}
         />
       )}
     </div>
