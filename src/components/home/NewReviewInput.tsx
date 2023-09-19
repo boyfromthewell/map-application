@@ -6,6 +6,7 @@ import { ImageType } from '@/types/review';
 
 import { addFileInfoToFirestore, storage } from '@/firebase/storage';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import Progressbar from './Progressbar';
 
 const GOOD_POINT_TEXT = [
   '☕커피가 맛있어요',
@@ -33,6 +34,7 @@ const NewReviewInput = ({
   const [imageUrl, setImageUrl] = useState<ImageType[]>([]);
   const [files, setFiles] = useState<File[]>([]);
 
+  const [progressPer, setProgressPer] = useState(0);
   const [isNotValidInfo, setIsNotValidInfo] = useState({ message: '' });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +56,7 @@ const NewReviewInput = ({
     setImageUrl([]);
     setIsNotValidInfo({ message: '' });
     setToggleImageUpload(false);
+    setProgressPer(0);
   };
 
   const checkValidInput = () => {
@@ -75,7 +78,16 @@ const NewReviewInput = ({
     try {
       const uploadPromises = files.map(async (file: File) => {
         const storageRef = ref(storage, `images/${file.name}`);
-        await uploadBytesResumable(storageRef, file);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on('state_changed', (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setProgressPer(progress);
+        });
+
+        await uploadTask;
+
         const downloadUrl = await getDownloadURL(storageRef);
         return { filename: file.name, url: downloadUrl };
       });
@@ -112,6 +124,8 @@ const NewReviewInput = ({
     if (toggleImageUpload && labelRef.current)
       labelRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, [toggleImageUpload]);
+
+  console.log(progressPer);
 
   return (
     <div style={{ position: 'relative', paddingBottom: 7 }}>
@@ -152,6 +166,7 @@ const NewReviewInput = ({
           ref={labelRef}
         />
       )}
+      {progressPer > 0 && <Progressbar percent={progressPer} />}
     </div>
   );
 };

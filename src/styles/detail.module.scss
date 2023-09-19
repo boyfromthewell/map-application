@@ -304,3 +304,17 @@ $section-padding-top: 8px;
   display: flex;
   margin-bottom: 12px;
 }
+
+.progressbarContainer {
+  display: flex;
+  width: 100%;
+  background-color: lightgray;
+  height: 4px;
+  border-radius: 12px;
+}
+
+.progressbar {
+  background-color: #64c0a9;
+  border-radius: 12px;
+  height: inherit;
+}
