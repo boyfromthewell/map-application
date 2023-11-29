@@ -30,8 +30,8 @@
   align-items: center;
   justify-content: center;
 
-  background-color: #ffffff;
-
+  background-color: var(--color-btn);
+  color: var(--color-text);
   &:active {
     background-color: #40a6fd;
     color: white;

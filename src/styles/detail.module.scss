@@ -5,7 +5,7 @@ $section-padding-top: 8px;
   position: absolute;
   display: flex;
   flex-direction: column;
-  color: #444444;
+  color: var(--color-text);
   left: 0;
   bottom: 0;
   width: 100%;
@@ -13,7 +13,7 @@ $section-padding-top: 8px;
   z-index: 101;
 
   padding: $section-padding-top 16px 16px;
-  background-color: white;
+  background-color: var(--color-bg);
 
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
@@ -66,6 +66,7 @@ $section-padding-top: 8px;
     }
 
     svg {
+      color: var(--color-text);
       animation: bounce 500ms infinite alternate ease-in;
     }
   }
@@ -180,10 +181,13 @@ $section-padding-top: 8px;
     width: 80%;
     height: inherit;
     font-size: 1rem;
-    padding: 4px;
+    padding: 12px;
     &:focus {
       outline: none;
     }
+    background-color: var(--color-bg);
+    border: 1px solid lightgray;
+    color: var(--color-text);
   }
   button {
     width: 20%;
@@ -238,7 +242,7 @@ $section-padding-top: 8px;
   .reviewContent {
     margin-top: 8px;
     font-size: 1.025rem;
-    color: #424242;
+    color: var(--color-text);
     line-height: 1.4rem;
   }
 

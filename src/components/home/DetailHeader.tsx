@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import headerStyles from '@/styles/header.module.scss';
@@ -25,7 +25,7 @@ const DetailHeader = ({
         onClick={onClickArrow}
         aria-label={expanded ? '매장 정보 접기' : '매장 정보 펼치기'}
       >
-        <IoIosArrowUp size={20} color="#666666" />
+        <IoIosArrowUp size={20} />
       </button>
       {!currentStore && <p className={styles.title}>매장을 선택해주세요</p>}
       {currentStore && (
@@ -36,7 +36,7 @@ const DetailHeader = ({
             onClick={() => copy(location.origin + '/' + currentStore.name)}
             aria-label="매장 페이지 주소 클립보드 복사"
           >
-            <AiOutlineShareAlt size={20} color="#444444" />
+            <AiOutlineShareAlt size={20} />
           </button>
         </div>
       )}

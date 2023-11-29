@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from '@/styles/header.module.scss';
 import Link from 'next/link';
 import { AiOutlineShareAlt } from 'react-icons/ai';
@@ -10,7 +10,7 @@ import copy from 'copy-to-clipboard';
 
 const Header = () => {
   const { resetMapOptions, getMapOptions } = useMap();
-
+  const [currentThemeMode, setCurrentThemeMode] = useState('light');
   const router = useRouter();
 
   const replaceAndCopyUrl = useCallback(() => {
@@ -21,10 +21,29 @@ const Header = () => {
     copy(location.origin + query);
   }, [getMapOptions, router]);
 
+  const toggleTheme = () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    setCurrentThemeMode(currentTheme!);
+
+    if (currentTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  };
+
   return (
     <HeaderComponent
       onClickLogo={resetMapOptions}
       rightElements={[
+        <button
+          key="themeBtn"
+          style={{ marginRight: 8 }}
+          className={styles.box}
+          onClick={toggleTheme}
+        >
+          {currentThemeMode}
+        </button>,
         <button
           key="button"
           onClick={replaceAndCopyUrl}
@@ -32,7 +51,7 @@ const Header = () => {
           aria-label="현재 위치 클립보드 복사"
           className={styles.box}
         >
-          <AiOutlineShareAlt size={20} color="#444444" />
+          <AiOutlineShareAlt size={20} />
         </button>,
         <Link
           href="/feedback"
@@ -40,7 +59,7 @@ const Header = () => {
           key="link"
           aria-label="피드백 페이지로 이동"
         >
-          <VscFeedback size={20} color="#444444" />
+          <VscFeedback size={20} />
         </Link>,
       ]}
     />

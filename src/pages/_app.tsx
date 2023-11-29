@@ -3,8 +3,14 @@ import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../seo.config';
 import Script from 'next/script';
+import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    console.log('hi');
+    document.documentElement.setAttribute('data-theme', 'light');
+  }, []);
+
   return (
     <>
       {/* 전역 적으로 seo 적용 */}
