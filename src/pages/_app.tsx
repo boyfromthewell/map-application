@@ -1,4 +1,5 @@
 import '@/styles/globals.scss';
+import '@/styles/font/font.scss';
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../seo.config';
