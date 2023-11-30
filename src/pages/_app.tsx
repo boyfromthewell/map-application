@@ -6,9 +6,19 @@ import Script from 'next/script';
 import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const setTheme = () => {
+    if (!localStorage.getItem('theme')) {
+      localStorage.setItem('theme', 'light');
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  };
+
   useEffect(() => {
-    console.log('hi');
-    document.documentElement.setAttribute('data-theme', 'light');
+    setTheme();
   }, []);
 
   return (

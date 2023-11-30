@@ -4,10 +4,12 @@ html[data-theme='light'] {
   --color-text: #{$text-color-light};
   --color-bg: #{$bg-color-light};
   --color-btn: #{$btn-color-light};
+  --color-btn2: #{$btn-color-light2};
 }
 
 html[data-theme='dark'] {
   --color-text: #{$text-color-dark};
   --color-bg: #{$bg-color-dark};
   --color-btn: #{$btn-color-dark};
+  --color-btn2: #{$btn-color-dark2};
 }

@@ -166,7 +166,7 @@ $section-padding-top: 8px;
     &.selected {
       border: 1px solid black;
       font-weight: bold;
-      background-color: #eef0f3;
+      background-color: var(--color-btn2);
     }
   }
 }

@@ -1,7 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from '@/styles/header.module.scss';
 import Link from 'next/link';
 import { AiOutlineShareAlt } from 'react-icons/ai';
+import { FaSun } from 'react-icons/fa';
+import { MdModeNight } from 'react-icons/md';
 import { VscFeedback } from 'react-icons/vsc';
 import HeaderComponent from '@/components/common/Header';
 import useMap from '@/hooks/useMap';
@@ -10,7 +12,8 @@ import copy from 'copy-to-clipboard';
 
 const Header = () => {
   const { resetMapOptions, getMapOptions } = useMap();
-  const [currentThemeMode, setCurrentThemeMode] = useState('light');
+  const [icon, setIcon] = useState<JSX.Element | null>(null);
+  const [currentTheme, setCurrentTheme] = useState('');
   const router = useRouter();
 
   const replaceAndCopyUrl = useCallback(() => {
@@ -22,15 +25,29 @@ const Header = () => {
   }, [getMapOptions, router]);
 
   const toggleTheme = () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    setCurrentThemeMode(currentTheme!);
-
+    const currentTheme = localStorage.getItem('theme');
+    setCurrentTheme(currentTheme!);
     if (currentTheme === 'light') {
+      localStorage.setItem('theme', 'dark');
       document.documentElement.setAttribute('data-theme', 'dark');
     } else {
+      localStorage.setItem('theme', 'light');
       document.documentElement.setAttribute('data-theme', 'light');
     }
   };
+
+  const renderIcon = () => {
+    if (!localStorage.getItem('theme')) setIcon(<MdModeNight size={20} />);
+    else if (localStorage.getItem('theme') === 'light') {
+      setIcon(<MdModeNight size={20} />);
+    } else {
+      setIcon(<FaSun size={20} />);
+    }
+  };
+
+  useEffect(() => {
+    renderIcon();
+  }, [currentTheme]);
 
   return (
     <HeaderComponent
@@ -42,7 +59,7 @@ const Header = () => {
           className={styles.box}
           onClick={toggleTheme}
         >
-          {currentThemeMode}
+          {icon}
         </button>,
         <button
           key="button"

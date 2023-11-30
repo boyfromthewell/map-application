@@ -63,6 +63,13 @@ export const generateStoreMarkerIcon = ({
   markerIndex: number;
   isSelected: boolean;
 }): ImageIcon => {
+  if (markerIndex === 5) {
+    return {
+      url: 'heart-icon.png',
+      size: new naver.maps.Size(45, 45),
+      scaledSize: new naver.maps.Size(45, 45),
+    };
+  }
   return {
     url: isSelected ? 'markers-selected.png' : 'markers.png',
     size: new naver.maps.Size(SCALED_MARKER_WIDTH, SCALED_MARKER_HEIGHT),
